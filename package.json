@@ -1,0 +1,57 @@
+{
+    "name": "retush",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "server": "node server.js",
+        "prod": "webpack-cli --mode=production --env production",
+        "watch": "webpack-cli --watch",
+        "watch:prod": "webpack-cli --watch --env production",
+        "lint": "eslint src"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "browserslist": [
+        "cover 99.5% in RU"
+    ],
+    "devDependencies": {
+        "@babel/core": "^7.4.5",
+        "@babel/plugin-proposal-class-properties": "^7.4.4",
+        "@babel/preset-env": "^7.4.5",
+        "@babel/preset-react": "^7.0.0",
+        "@svgr/webpack": "^5.5.0",
+        "autoprefixer": "^9.0.2",
+        "babel-eslint": "^10.0.1",
+        "babel-loader": "^8.0.6",
+        "babel-plugin-import": "^1.13.0",
+        "cross-env": "^7.0.3",
+        "css-loader": "^1.0.0",
+        "eslint": "^5.16.0",
+        "eslint-config-airbnb": "^17.1.0",
+        "eslint-plugin-import": "^2.14.0",
+        "eslint-plugin-jsx-a11y": "^6.1.1",
+        "eslint-plugin-react": "^7.11.0",
+        "express": "^4.17.1",
+        "file-loader": "^3.0.1",
+        "less": "^3.9.0",
+        "less-loader": "^5.0.0",
+        "mini-css-extract-plugin": "^0.7.0",
+        "node-sass": "^4.14.1",
+        "postcss-loader": "^2.1.6",
+        "redux-devtools-extension": "^2.13.8",
+        "sass-loader": "^7.3.1",
+        "style-loader": "^0.21.0",
+        "webpack": "^4.20.2",
+        "webpack-cli": "^4.7.0",
+        "webpack-dev-middleware": "^3.7.0"
+    },
+    "dependencies": {
+        "bootstrap": "^4.1.1",
+        "jquery": "^3.3.1",
+        "jquery-mask-plugin": "^1.14.16",
+        "popper.js": "^1.14.3",
+        "swiper": "^5.4.1"
+    }
+}
