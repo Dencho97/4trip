@@ -136,7 +136,7 @@ body {
 	position: relative;
 }
 
-input, textarea, button {
+input, textarea, button, select {
 	font-family: $main-font;
 }
 
@@ -161,6 +161,30 @@ a {
 		align-items: center;
 		padding: 0;
 		margin: 0;
+	}
+	&__left {
+		display: flex;
+    	align-items: center;
+		&__select-city {
+			margin: 0 0 0 96px;
+			&_title {
+				color: #C4C4C4;
+				font-size: 1rem;
+				font-weight: $medium;
+				list-style: 1;
+			}
+			&_select {
+				display: flex;
+				flex-direction: column;
+				margin: 10px 0 0 0;
+				color: #000;
+				font-size: 1.25rem;
+				font-weight: $medium;
+				list-style: 1;
+				border: none;
+				border-bottom: 1px solid #C4C4C4;
+			}
+		}
 	}
 }
 
