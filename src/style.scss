@@ -706,6 +706,42 @@ a {
 
 .block-catalog-places {
 	margin: 85px 0 0 0;
+	&:nth-child(odd) {
+		.title-1 {
+			position: relative;
+			display: inline-block;
+			&::before {
+				content: '';
+				display: block;
+				width: 160px;
+				height: 203px;
+				background-image: url('assets/pin-title.svg');
+				@include bg(contain);
+				position: absolute;
+				right: -30px;
+    			top: -40px;
+				z-index: -1;
+			}
+		}
+	}
+	&:nth-child(even) {
+		.title-1 {
+			position: relative;
+			display: inline-block;
+			&::before {
+				content: '';
+				display: block;
+				width: 160px;
+				height: 203px;
+				background-image: url('assets/pin-title.svg');
+				@include bg(contain);
+				position: absolute;
+				left: -80px;
+    			top: -50px;
+				z-index: -1;
+			}
+		}
+	}
 	&__meta {
 		margin: 40px 0 0 0;
 		.col-lg-8 {

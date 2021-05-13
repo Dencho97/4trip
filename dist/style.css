@@ -2230,6 +2230,40 @@ a {
 
 .block-catalog-places {
   margin: 85px 0 0 0; }
+  .block-catalog-places:nth-child(odd) .title-1 {
+    position: relative;
+    display: inline-block; }
+    .block-catalog-places:nth-child(odd) .title-1::before {
+      content: '';
+      display: block;
+      width: 160px;
+      height: 203px;
+      background-image: url(./assets/pin-title.svg);
+      -moz-background-size: contain;
+           background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      position: absolute;
+      right: -30px;
+      top: -40px;
+      z-index: -1; }
+  .block-catalog-places:nth-child(even) .title-1 {
+    position: relative;
+    display: inline-block; }
+    .block-catalog-places:nth-child(even) .title-1::before {
+      content: '';
+      display: block;
+      width: 160px;
+      height: 203px;
+      background-image: url(./assets/pin-title.svg);
+      -moz-background-size: contain;
+           background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      position: absolute;
+      left: -80px;
+      top: -50px;
+      z-index: -1; }
   .block-catalog-places__meta {
     margin: 40px 0 0 0; }
     .block-catalog-places__meta .col-lg-8 {
