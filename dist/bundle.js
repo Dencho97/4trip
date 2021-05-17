@@ -28886,6 +28886,18 @@ window.jQuery = jquery__WEBPACK_IMPORTED_MODULE_0___default.a; // $(() => {
 //     });
 // });
 
+jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).scroll(function () {
+    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).scrollTop() > 1) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.header').addClass('sticky');
+    } else {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.header').removeClass('sticky');
+    }
+
+    ;
+  });
+});
+
 /***/ }),
 
 /***/ "./src/style.scss":
