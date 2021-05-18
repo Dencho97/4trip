@@ -26,3 +26,28 @@ $(() => {
         };  
     });  
 });
+
+$(() => {
+    $('[data-modal]').click(function() {
+        const modalID = $(this).data('modal');
+        $(modalID).modal({
+            fadeDuration: 300
+        });
+
+        return false;
+    });
+
+    $('.modal').on($.modal.BLOCK, function(event, modal) {
+        $('body').css({ overflow: 'visible' });
+    });
+});
+
+$(() => {
+    $('.popup-hotel-options__categories_item, .block-hotel-options__categories__item').on('click', function() {
+        const type = $(this).data('type');
+        $('.popup-hotel-options__categories_item').removeClass('active');
+        $(`.popup-hotel-options__categories_item[data-type=${type}]`).addClass('active');
+        $('.popup-hotel-options_content ul').removeClass('active');
+        $(`#${type}`).addClass('active');
+    });
+});

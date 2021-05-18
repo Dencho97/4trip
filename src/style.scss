@@ -1173,3 +1173,153 @@ a {
 		}
 	}
 }
+
+.block-menu {
+	margin: 80px 0 0 0;
+	&_item {
+		@include bg();
+		width: 100%;
+		height: 350px;
+		margin: 40px 0 0 0;
+		border-radius: 25px;
+		display: block;
+	}
+}
+
+.block-inside-gallery {
+	margin: 80px 0 0 0;
+}
+
+.block-hotel-options {
+	&__categories {
+		display: flex;
+		justify-content: space-between;
+		&__item {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			margin: 40px 0 0 0;
+			border: 1px solid #C4C4C4;
+			background-color: white;
+			border-radius: 25px;
+			width: 190px;
+			height: 200px;
+			cursor: pointer;
+			@include standartAnimate();
+			&:hover {
+				svg {
+					path {
+						fill: white;
+					}
+				}
+				span {
+					color: white;
+				}
+				&.blue {
+					background-color: #0394ED;
+					border-color: #0394ED;
+				}
+				&.yellow {
+					background-color: #FFCB45;
+					border-color: #FFCB45;
+				}
+				&.purple {
+					background-color: #DC1D84;
+					border-color: #DC1D84;
+					svg {
+						path {
+							fill: unset;
+							stroke: white;
+						}
+					}
+				}
+			}
+			svg {
+				height: 68px;
+				width: auto;
+				path {
+					@include standartAnimate();
+				}
+			}
+			span {
+				font-size: 1.25rem;
+				font-weight: $medium;
+				line-height: 1;
+				display: inline-block;
+				color: black;
+				margin: 32px 0 0 0;
+				@include standartAnimate();
+			}
+		}
+	}
+}
+
+.blocker {
+	z-index: 10000;
+}
+
+.popup-hotel-options {
+	width: 980px;
+	box-shadow: -9px 21px 14px rgba(8, 56, 86, 0.16);
+	border-radius: 25px;
+	max-width: unset;
+	padding: 68px 0 0 0;
+	&__categories {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 0 30px;
+		&_item {
+			outline: none;
+			border: 3px solid #E5E5E5;
+			background-color: transparent;
+			padding: 0 50px;
+			border-radius: 94px;
+			height: 67px;
+			color: black;
+			font-size: 1.25rem;
+			font-weight: $medium;
+			line-height: 1;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+			@include standartAnimate();
+			&:hover, &.active {
+				border-color: $yellow;
+				background-color: $yellow;
+			}
+		}
+	}
+	&_content {
+		margin: 100px 0 200px 0;
+		padding: 0 60px;
+		height: 250px;
+		ul {
+			list-style: none;
+			columns: 2;
+			padding: 0;
+			margin: 0;
+			display: none;
+			height: 250px;
+			&.active {
+				display: initial;
+			}
+			li {
+				display: flex;
+				align-items: center;
+				margin: 0 0 20px 0;
+				img {
+					margin: 0 12px 0 0;
+					width: 24px;
+				}
+				span {
+					font-size: 1.5625rem;
+					line-height: 1;
+					font-weight: normal;
+				}
+			}
+		}
+	}
+}
