@@ -145,6 +145,29 @@ a {
 	text-decoration: none;
 }
 
+.custom-select {
+	&-opener {
+		background-color: white;
+		padding: 0;
+		width: auto;
+    	display: inline-block;
+	}
+	&-panel {
+		background-color: white;
+		top: calc(100% + 15px);
+		box-shadow: -9px 21px 14px rgba(8, 56, 86, 0.16);
+		border-radius: 25px;
+		overflow-y: hidden !important;
+	}
+	&-option {
+		cursor: pointer;
+		padding: 10px 15px;
+		&.has-focus, &.is-sselected {
+			background-color: $yellow;
+		}
+	}
+}
+
 .header {
 	display: flex;
 	align-items: center;
@@ -291,14 +314,18 @@ a {
 	&_title {
 		margin: 200px 0 0 0;
 	}
-	&_select-way {
-		border: none;
-		border-bottom: 2px solid #C4C4C4;
-		font-size: 1.5rem;
-		font-weight: $medium;
-		margin: 60px 0 0 0;
-		outline: none;
-		padding: 0 0 0 64px;
+	.custom-select {
+		&-opener {
+			margin: 60px 0 0 0;
+			padding: 0 64px 10px 64px;
+			border-bottom: 2px solid #C4C4C4;
+			font-size: 1.5rem;
+			font-weight: $medium;
+			background-image: url('assets/find-icon.svg');
+			background-repeat: no-repeat;
+			background-size: auto;
+			background-position: 30px 30%;
+		}
 	}
 	&__categories {
 		display: flex;

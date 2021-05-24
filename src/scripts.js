@@ -3,6 +3,7 @@ import $ from 'jquery';
 import 'jquery-mask-plugin';
 import Swiper from 'swiper';
 import StickySidebar from 'sticky-sidebar';
+import customSelect from 'custom-select';
 
 window.$ = $;
 window.jQuery = $;
@@ -15,6 +16,10 @@ window.jQuery = $;
 //         topSpacing: 20
 //     });
 // });
+
+$(() => {
+    customSelect('.custom-select');
+});
 
 $(() => {
     $(window).scroll(function () {  
