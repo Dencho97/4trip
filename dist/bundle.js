@@ -29625,15 +29625,17 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
   custom_select__WEBPACK_IMPORTED_MODULE_4___default()('.custom-select');
 });
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).scroll(function () {
-    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).scrollTop() > 1) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.header').addClass('sticky');
-    } else {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.header').removeClass('sticky');
-    }
+  if (!window.matchMedia('(max-width: 991px)').matches) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).scroll(function () {
+      if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).scrollTop() > 1) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.header').addClass('sticky');
+      } else {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.header').removeClass('sticky');
+      }
 
-    ;
-  });
+      ;
+    });
+  }
 });
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('[data-modal]').click(function () {
@@ -29656,6 +29658,24 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(`.popup-hotel-options__categories_item[data-type=${type}]`).addClass('active');
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('.popup-hotel-options_content ul').removeClass('active');
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(`#${type}`).addClass('active');
+  });
+});
+jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
+  new swiper__WEBPACK_IMPORTED_MODULE_2__["default"](".block-ways .swiper-container", {
+    spaceBetween: 30,
+    breakpoints: {
+      991: {
+        slidesPerView: 4,
+        slidesPerColumn: 2,
+        allowTouchMove: false
+      },
+      320: {
+        allowTouchMove: true,
+        autoplay: {
+          delay: 3500
+        }
+      }
+    }
   });
 });
 

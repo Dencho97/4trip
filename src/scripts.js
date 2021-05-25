@@ -22,14 +22,16 @@ $(() => {
 });
 
 $(() => {
-    $(window).scroll(function () {  
-        if ($(this).scrollTop() > 1) {
-            $('.header').addClass('sticky');
-        }
-        else {
-            $('.header').removeClass('sticky');
-        };  
-    });  
+    if(!window.matchMedia('(max-width: 991px)').matches) {
+        $(window).scroll(function () {  
+            if ($(this).scrollTop() > 1) {
+                $('.header').addClass('sticky');
+            }
+            else {
+                $('.header').removeClass('sticky');
+            };  
+        }); 
+    }
 });
 
 $(() => {
@@ -56,3 +58,22 @@ $(() => {
         $(`#${type}`).addClass('active');
     });
 });
+
+$(() => {
+    new Swiper(".block-ways .swiper-container", {
+        spaceBetween: 30,
+        breakpoints: {
+            991: {
+                slidesPerView: 4,
+                slidesPerColumn: 2,
+                allowTouchMove: false
+            },
+            320: {
+                allowTouchMove: true,
+                autoplay: {
+                    delay: 3500
+                }
+            }
+        }
+    });
+})
