@@ -29663,6 +29663,10 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
   new swiper__WEBPACK_IMPORTED_MODULE_2__["default"](".block-ways .swiper-container", {
     spaceBetween: 30,
+    navigation: {
+      nextEl: ".block-ways .swiper-button-next",
+      prevEl: ".block-ways .swiper-button-prev"
+    },
     breakpoints: {
       991: {
         slidesPerView: 4,
@@ -29675,6 +29679,23 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
           delay: 3500
         }
       }
+    }
+  });
+});
+jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.header_burger').on('click', function () {
+    const menu = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.header__mobile');
+
+    if (menu.hasClass('fadeOut')) {
+      menu.removeClass('fadeOut').addClass('fadeIn');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('body, html').css({
+        overflow: 'hidden'
+      });
+    } else {
+      menu.removeClass('fadeIn').addClass('fadeOut');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('body, html').css({
+        overflow: 'auto'
+      });
     }
   });
 });
