@@ -95,3 +95,16 @@ $(() => {
         }
     });
 });
+
+$(() => {
+    $('.block-category__sidebar_btn').on('click', function() {
+        if ($(this).hasClass('active')) {
+            $(this).removeClass('active');
+            $('.block-category__sidebar__filter,.block-category__sidebar_subcategories').hide();
+        } else {
+            $(this).addClass('active');
+            $('.block-category__sidebar__filter').show();
+            $('.block-category__sidebar_subcategories').css({ display: 'grid' });
+        }
+    });
+});

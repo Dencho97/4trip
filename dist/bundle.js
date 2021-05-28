@@ -29699,6 +29699,20 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
     }
   });
 });
+jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.block-category__sidebar_btn').on('click', function () {
+    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hasClass('active')) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).removeClass('active');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.block-category__sidebar__filter,.block-category__sidebar_subcategories').hide();
+    } else {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass('active');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.block-category__sidebar__filter').show();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.block-category__sidebar_subcategories').css({
+        display: 'grid'
+      });
+    }
+  });
+});
 
 /***/ }),
 
