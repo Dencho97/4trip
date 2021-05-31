@@ -108,3 +108,27 @@ $(() => {
         }
     });
 });
+
+$(() => {
+    $('.header__left__select-city_select').on('change', function() {
+        window.location.href = $(this).val();
+    });
+});
+
+$(() => {
+    $('.block-how-to-get__items__item').first().addClass('active');
+    $('.block-how-to-get_text').each(function(i) {
+        if(i !== 0) {
+            $(this).hide();
+        }
+    });
+
+    $('.block-how-to-get__items__item').on('click', function() {
+        $('.block-how-to-get__items__item').removeClass('active');
+        $(this).addClass('active');
+        const type = $(this).data('type');
+
+        $('.block-how-to-get_text').hide();
+        $(`.block-how-to-get_text.${type}`).show();
+    });
+});

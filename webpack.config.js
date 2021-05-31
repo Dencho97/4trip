@@ -79,7 +79,7 @@ module.exports = (env) => {
                             options: {
                                 name: '[name].[ext]',
                                 outputPath: 'assets',
-                                publicPath: prod ? '/assets/template_outsource/dist/assets' : './assets', // '/assets/template/dist/assets' // './assets' - for dev
+                                publicPath: prod ? '/assets/template/dist/assets' : './assets', // '/assets/template/dist/assets' // './assets' - for dev
                             },
                         }
                     ]

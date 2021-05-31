@@ -1700,7 +1700,8 @@ a {
         font-weight: 500;
         list-style: 1;
         border: none;
-        border-bottom: 1px solid #C4C4C4; }
+        border-bottom: 1px solid #C4C4C4;
+        outline: none; }
   .header_menu {
     display: -webkit-box;
     display: -webkit-flex;
@@ -1823,7 +1824,7 @@ a {
     border-bottom: 2px solid #C4C4C4;
     font-size: 1.5rem;
     font-weight: 500;
-    background-image: url(./assets/find-icon.svg);
+    background-image: url(/assets/template/dist/assets/find-icon.svg);
     background-repeat: no-repeat;
     -moz-background-size: auto;
          background-size: auto;
@@ -2046,7 +2047,7 @@ a {
       content: '';
       width: 81px;
       height: 81px;
-      background-image: url(./assets/dialog-arrow.svg);
+      background-image: url(/assets/template/dist/assets/dialog-arrow.svg);
       -moz-background-size: contain;
            background-size: contain;
       background-repeat: no-repeat;
@@ -2271,7 +2272,7 @@ a {
       padding: 18.5px 30px 18.5px 0;
       width: 200px;
       cursor: pointer;
-      background-image: url(./assets/dropdown.svg);
+      background-image: url(/assets/template/dist/assets/dropdown.svg);
       background-repeat: no-repeat;
       -moz-background-size: auto;
            background-size: auto;
@@ -2331,23 +2332,23 @@ a {
       cursor: pointer;
       -webkit-transition: ease-in .3s;
       transition: ease-in .3s; }
-      .block-how-to-get__items__item:hover svg path {
+      .block-how-to-get__items__item:hover svg path, .block-how-to-get__items__item.active svg path {
         fill: white; }
-      .block-how-to-get__items__item:hover span {
+      .block-how-to-get__items__item:hover span, .block-how-to-get__items__item.active span {
         color: white; }
-      .block-how-to-get__items__item:hover.blue {
+      .block-how-to-get__items__item:hover.blue, .block-how-to-get__items__item.active.blue {
         background-color: #0394ED;
         border-color: #0394ED; }
-      .block-how-to-get__items__item:hover.yellow {
+      .block-how-to-get__items__item:hover.yellow, .block-how-to-get__items__item.active.yellow {
         background-color: #FFCB45;
         border-color: #FFCB45; }
-      .block-how-to-get__items__item:hover.green {
+      .block-how-to-get__items__item:hover.green, .block-how-to-get__items__item.active.green {
         background-color: #8DD21B;
         border-color: #8DD21B; }
-      .block-how-to-get__items__item:hover.pink {
+      .block-how-to-get__items__item:hover.pink, .block-how-to-get__items__item.active.pink {
         background-color: #FE2D78;
         border-color: #FE2D78; }
-      .block-how-to-get__items__item:hover.purple {
+      .block-how-to-get__items__item:hover.purple, .block-how-to-get__items__item.active.purple {
         background-color: #7C1ADE;
         border-color: #7C1ADE; }
       .block-how-to-get__items__item svg {
@@ -2426,7 +2427,7 @@ a {
       display: block;
       width: 160px;
       height: 203px;
-      background-image: url(./assets/pin-title.svg);
+      background-image: url(/assets/template/dist/assets/pin-title.svg);
       -moz-background-size: contain;
            background-size: contain;
       background-repeat: no-repeat;
@@ -2443,7 +2444,7 @@ a {
       display: block;
       width: 160px;
       height: 203px;
-      background-image: url(./assets/pin-title.svg);
+      background-image: url(/assets/template/dist/assets/pin-title.svg);
       -moz-background-size: contain;
            background-size: contain;
       background-repeat: no-repeat;
@@ -2762,9 +2763,10 @@ a {
         transition: ease-in .3s; }
         .block-inside-top__content__item_text.link {
           color: #0394ED;
-          border-bottom: 1px solid #0394ED; }
-          .block-inside-top__content__item_text.link:hover {
-            border-bottom: 1px solid transparent; }
+          text-decoration: underline; }
+
+.block-inside-description_text * {
+  margin: 0; }
 
 .block-object-info {
   height: 390px;

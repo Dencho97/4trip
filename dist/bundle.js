@@ -29713,6 +29713,26 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
     }
   });
 });
+jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.header__left__select-city_select').on('change', function () {
+    window.location.href = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+  });
+});
+jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.block-how-to-get__items__item').first().addClass('active');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.block-how-to-get_text').each(function (i) {
+    if (i !== 0) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hide();
+    }
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.block-how-to-get__items__item').on('click', function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.block-how-to-get__items__item').removeClass('active');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass('active');
+    const type = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data('type');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.block-how-to-get_text').hide();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(`.block-how-to-get_text.${type}`).show();
+  });
+});
 
 /***/ }),
 

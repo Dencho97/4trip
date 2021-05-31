@@ -232,6 +232,7 @@ a {
 				list-style: 1;
 				border: none;
 				border-bottom: 1px solid #C4C4C4;
+				outline: none;
 			}
 		}
 	}
@@ -745,7 +746,7 @@ a {
 			outline: none;
 			cursor: pointer;
 			@include standartAnimate();
-			&:hover {
+			&:hover, &.active {
 				svg {
 					path {
 						fill: white;
@@ -1123,12 +1124,17 @@ a {
 				@include standartAnimate();
 				&.link {
 					color: #0394ED;
-					border-bottom: 1px solid #0394ED;
-					&:hover {
-						border-bottom: 1px solid transparent;
-					}
+					text-decoration: underline;
 				}
 			}
+		}
+	}
+}
+
+.block-inside-description {
+	&_text {
+		* {
+			margin: 0;
 		}
 	}
 }
