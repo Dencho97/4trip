@@ -4,6 +4,7 @@ import 'jquery-mask-plugin';
 import Swiper from 'swiper';
 import StickySidebar from 'sticky-sidebar';
 import customSelect from 'custom-select';
+import ymaps from 'ymaps';
 
 window.$ = $;
 window.jQuery = $;
@@ -132,3 +133,113 @@ $(() => {
         $(`.block-how-to-get_text.${type}`).show();
     });
 });
+
+// map
+$(() => {
+    const map = $('#map-object');
+    if (map.length) {
+        const coords = map.data('coords').split(',');
+
+        ymaps.load('https://api-maps.yandex.ru/2.1/?lang=ru_RU').then((maps) => {
+            const myMap = new maps.Map('map-object', {
+                center: coords,
+                zoom: 16,
+                controls: []
+            }, {
+                searchControlProvider: 'yandex#search',
+            });
+
+            const myPlacemark = new maps.Placemark(coords, {}, {});
+  
+            myMap.geoObjects.add(myPlacemark);
+
+            myMap.behaviors.disable('scrollZoom');
+            map.addClass('noZoom');
+            myMap.events.add('click', () => {
+                if (map.hasClass('noZoom')) {
+                    map.removeClass('noZoom').addClass('yesZoom');
+                    myMap.behaviors.enable('scrollZoom');
+                } else {
+                    map.removeClass('yesZoom').addClass('noZoom');
+                    myMap.behaviors.disable('scrollZoom');
+                }
+            });
+  
+            const isMobile = {
+                Android: () => (navigator.userAgent.match(/Android/i)),
+                BlackBerry: () => (navigator.userAgent.match(/BlackBerry/i)),
+                iOS: () => (navigator.userAgent.match(/iPhone|iPad|iPod/i)),
+                Opera: () => (navigator.userAgent.match(/Opera Mini/i)),
+                Windows: () => (navigator.userAgent.match(/IEMobile/i)),
+                any: () => (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows())
+            };
+  
+            if (isMobile.any()) {
+                myMap.behaviors.disable('drag');
+            }
+        }).catch(error => console.log('Failed to load Yandex Maps', error));
+    }
+  });
+
+  // catalog
+  $(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    let initialParams = [];
+
+    for (let p of urlParams) {
+        initialParams = [...initialParams, {
+            key: p[0],
+            value: p[1]
+        }];
+    }
+
+    initialParams.forEach((item) => {
+        const $elem = $(`.block-category__sidebar__filter_item input[type=checkbox][name=${item.key}]`);
+        if($elem.length && $elem.val() === item.value) {
+            $elem.prop('checked', true);
+        }
+    });
+
+    $('.block-category__sidebar__filter_item input').on('change', function() {
+        $('.block-category__sidebar__filter').trigger('submit');
+    });
+
+    function updateURL(params) {
+        if (history.pushState) {
+            const baseUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+            const newUrl = baseUrl + `${params !== '' ? `?${params}` : ''}`;
+            $('.block-category__sidebar_subcategories li').each(function() {
+                const linkHref = $(this).find('a').attr('href');
+                $(this).find('a').attr('href', `${params !== '' ? `${linkHref}?${params}` : linkHref}`);
+            });
+            history.pushState(null, null, newUrl);
+        }
+        else {
+            alert('History API не поддерживается');
+        }
+    }
+
+    $('.block-category__sidebar__filter').on('submit', function(e) {
+        e.preventDefault();
+        const params = $(this)
+                    .serializeArray()
+                    .filter(item => item.value !== '')
+                    .map(item => `${item.name}=${item.value}`)
+                    .join('&');
+
+        updateURL(params);
+
+
+        $.get(window.location.href, (data, status) => {
+            if (status === 'success') {
+                const $data = $(data);
+
+                const $catalog = $data.find('#catalog-wrapper');
+
+                $('#catalog-wrapper').replaceWith($catalog[0]);
+            }
+        });
+
+        return false;
+    });
+  });

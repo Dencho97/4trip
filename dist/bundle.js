@@ -29550,6 +29550,54 @@ module.exports = g;
 
 /***/ }),
 
+/***/ "./node_modules/ymaps/dist/ymaps.esm.js":
+/*!**********************************************!*\
+  !*** ./node_modules/ymaps/dist/ymaps.esm.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var ymaps$1 = {
+  load: function load() {
+    var src = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '//api-maps.yandex.ru/2.1/?lang=en_RU';
+
+    var getNsParamValue = function getNsParamValue() {
+      var results = src.match(/[\\?&]ns=([^&#]*)/);
+      return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    };
+
+    if (!this.promise) {
+      this.promise = new Promise(function (resolve, reject) {
+        var scriptElement = document.createElement('script');
+        scriptElement.onload = resolve;
+        scriptElement.onerror = reject;
+        scriptElement.type = 'text/javascript';
+        scriptElement.src = src;
+        document.body.appendChild(scriptElement);
+      }).then(function () {
+        var ns = getNsParamValue();
+
+        if (ns && ns !== 'ymaps') {
+          (0, eval)("var ymaps = ".concat(ns, ";"));
+        }
+
+        return new Promise(function (resolve) {
+          return ymaps.ready(resolve);
+        });
+      });
+    }
+
+    return this.promise;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ymaps$1);
+
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -29605,7 +29653,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sticky_sidebar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! sticky-sidebar */ "./node_modules/sticky-sidebar/src/sticky-sidebar.js");
 /* harmony import */ var custom_select__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! custom-select */ "./node_modules/custom-select/build/index.js");
 /* harmony import */ var custom_select__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(custom_select__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var ymaps__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ymaps */ "./node_modules/ymaps/dist/ymaps.esm.js");
 /* eslint-disable */
+
 
 
 
@@ -29731,6 +29781,99 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
     const type = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data('type');
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('.block-how-to-get_text').hide();
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(`.block-how-to-get_text.${type}`).show();
+  });
+}); // map
+
+jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
+  const map = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#map-object');
+
+  if (map.length) {
+    const coords = map.data('coords').split(',');
+    ymaps__WEBPACK_IMPORTED_MODULE_5__["default"].load('https://api-maps.yandex.ru/2.1/?lang=ru_RU').then(maps => {
+      const myMap = new maps.Map('map-object', {
+        center: coords,
+        zoom: 16,
+        controls: []
+      }, {
+        searchControlProvider: 'yandex#search'
+      });
+      const myPlacemark = new maps.Placemark(coords, {}, {});
+      myMap.geoObjects.add(myPlacemark);
+      myMap.behaviors.disable('scrollZoom');
+      map.addClass('noZoom');
+      myMap.events.add('click', () => {
+        if (map.hasClass('noZoom')) {
+          map.removeClass('noZoom').addClass('yesZoom');
+          myMap.behaviors.enable('scrollZoom');
+        } else {
+          map.removeClass('yesZoom').addClass('noZoom');
+          myMap.behaviors.disable('scrollZoom');
+        }
+      });
+      const isMobile = {
+        Android: () => navigator.userAgent.match(/Android/i),
+        BlackBerry: () => navigator.userAgent.match(/BlackBerry/i),
+        iOS: () => navigator.userAgent.match(/iPhone|iPad|iPod/i),
+        Opera: () => navigator.userAgent.match(/Opera Mini/i),
+        Windows: () => navigator.userAgent.match(/IEMobile/i),
+        any: () => isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows()
+      };
+
+      if (isMobile.any()) {
+        myMap.behaviors.disable('drag');
+      }
+    }).catch(error => console.log('Failed to load Yandex Maps', error));
+  }
+}); // catalog
+
+jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
+  const urlParams = new URLSearchParams(window.location.search);
+  let initialParams = [];
+
+  for (let p of urlParams) {
+    initialParams = [...initialParams, {
+      key: p[0],
+      value: p[1]
+    }];
+  }
+
+  initialParams.forEach(item => {
+    const $elem = jquery__WEBPACK_IMPORTED_MODULE_0___default()(`.block-category__sidebar__filter_item input[type=checkbox][name=${item.key}]`);
+
+    if ($elem.length && $elem.val() === item.value) {
+      $elem.prop('checked', true);
+    }
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.block-category__sidebar__filter_item input').on('change', function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.block-category__sidebar__filter').trigger('submit');
+  });
+
+  function updateURL(params) {
+    if (history.pushState) {
+      const baseUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+      const newUrl = baseUrl + `${params !== '' ? `?${params}` : ''}`;
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.block-category__sidebar_subcategories li').each(function () {
+        const linkHref = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).find('a').attr('href');
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).find('a').attr('href', `${params !== '' ? `${linkHref}?${params}` : linkHref}`);
+      });
+      history.pushState(null, null, newUrl);
+    } else {
+      alert('History API не поддерживается');
+    }
+  }
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.block-category__sidebar__filter').on('submit', function (e) {
+    e.preventDefault();
+    const params = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).serializeArray().filter(item => item.value !== '').map(item => `${item.name}=${item.value}`).join('&');
+    updateURL(params);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default.a.get(window.location.href, (data, status) => {
+      if (status === 'success') {
+        const $data = jquery__WEBPACK_IMPORTED_MODULE_0___default()(data);
+        const $catalog = $data.find('#catalog-wrapper');
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#catalog-wrapper').replaceWith($catalog[0]);
+      }
+    });
+    return false;
   });
 });
 
