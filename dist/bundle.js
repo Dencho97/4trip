@@ -29676,11 +29676,18 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
 });
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
   if (!window.matchMedia('(max-width: 991px)').matches) {
+    const headerHeight = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#header').height();
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).scroll(function () {
-      if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).scrollTop() > 1) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.header').addClass('sticky');
+      if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).scrollTop() > 100) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('body').css({
+          paddingTop: headerHeight
+        });
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#header').addClass('sticky');
       } else {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.header').removeClass('sticky');
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('body').css({
+          paddingTop: 0
+        });
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#header').removeClass('sticky');
       }
 
       ;
@@ -29688,16 +29695,23 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
   }
 });
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('[data-modal]').click(function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('[data-modal]').click(function (e) {
+    e.preventDefault();
     const modalID = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data('modal');
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(modalID).modal({
       fadeDuration: 300
-    });
+    }); // $('body, html').css({ overflow: 'hidden' });
+
     return false;
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal').on(jquery__WEBPACK_IMPORTED_MODULE_0___default.a.modal.BLOCK, function (event, modal) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('body').css({
-      overflow: 'visible'
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('body, html').css({
+      overflow: 'hidden'
+    });
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal').on(jquery__WEBPACK_IMPORTED_MODULE_0___default.a.modal.CLOSE, function (event, modal) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('body, html').css({
+      overflow: 'auto'
     });
   });
 });
@@ -29769,18 +29783,22 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
   });
 });
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.block-how-to-get__items__item').first().addClass('active');
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.block-how-to-get_text').each(function (i) {
-    if (i !== 0) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hide();
-    }
+  let city = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.block-how-to-get__head_select').val();
+  let type = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.block-how-to-get__items__item').first().data('type');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.block-how-to-get__head_select').on('change', function () {
+    city = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(`.block-how-to-get_text`).hide();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(`.block-how-to-get_text.${city}.${type}`).show();
   });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.block-how-to-get_text').hide();
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.block-how-to-get__items__item').first().addClass('active');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(`.block-how-to-get_text.${city}.${type}`).show();
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.block-how-to-get__items__item').on('click', function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('.block-how-to-get__items__item').removeClass('active');
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass('active');
-    const type = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data('type');
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.block-how-to-get_text').hide();
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(`.block-how-to-get_text.${type}`).show();
+    type = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data('type');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(`.block-how-to-get_text`).hide();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(`.block-how-to-get_text.${city}.${type}`).show();
   });
 }); // map
 

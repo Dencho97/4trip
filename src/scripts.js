@@ -24,29 +24,39 @@ $(() => {
 
 $(() => {
     if(!window.matchMedia('(max-width: 991px)').matches) {
-        $(window).scroll(function () {  
-            if ($(this).scrollTop() > 1) {
-                $('.header').addClass('sticky');
+        const headerHeight = $('#header').height();
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 100) {
+                $('body').css({ paddingTop: headerHeight });
+                $('#header').addClass('sticky');
             }
             else {
-                $('.header').removeClass('sticky');
+                $('body').css({ paddingTop: 0 });
+                $('#header').removeClass('sticky');
             };  
         }); 
     }
 });
 
 $(() => {
-    $('[data-modal]').click(function() {
+    $('[data-modal]').click(function(e) {
+        e.preventDefault();
+
         const modalID = $(this).data('modal');
         $(modalID).modal({
             fadeDuration: 300
         });
 
+        // $('body, html').css({ overflow: 'hidden' });
+
         return false;
     });
 
     $('.modal').on($.modal.BLOCK, function(event, modal) {
-        $('body').css({ overflow: 'visible' });
+        $('body, html').css({ overflow: 'hidden' });
+    });
+    $('.modal').on($.modal.CLOSE, function(event, modal) {
+        $('body, html').css({ overflow: 'auto' });
     });
 });
 
@@ -117,20 +127,29 @@ $(() => {
 });
 
 $(() => {
-    $('.block-how-to-get__items__item').first().addClass('active');
-    $('.block-how-to-get_text').each(function(i) {
-        if(i !== 0) {
-            $(this).hide();
-        }
+    let city = $('.block-how-to-get__head_select').val();
+    let type = $('.block-how-to-get__items__item').first().data('type');
+
+    $('.block-how-to-get__head_select').on('change', function() {
+        city = $(this).val();
+
+        $(`.block-how-to-get_text`).hide();
+        $(`.block-how-to-get_text.${city}.${type}`).show();
     });
+
+    $('.block-how-to-get_text').hide();
+    $('.block-how-to-get__items__item').first().addClass('active');
+
+
+    $(`.block-how-to-get_text.${city}.${type}`).show();
 
     $('.block-how-to-get__items__item').on('click', function() {
         $('.block-how-to-get__items__item').removeClass('active');
         $(this).addClass('active');
-        const type = $(this).data('type');
+        type = $(this).data('type');
 
-        $('.block-how-to-get_text').hide();
-        $(`.block-how-to-get_text.${type}`).show();
+        $(`.block-how-to-get_text`).hide();
+        $(`.block-how-to-get_text.${city}.${type}`).show();
     });
 });
 
