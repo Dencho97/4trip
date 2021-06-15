@@ -217,10 +217,19 @@ $(() => {
         if($elem.length && $elem.val() === item.value) {
             $elem.prop('checked', true);
         }
+        const $elemDate = $(`.block-category__sidebar__filter_item input[type=date][name=${item.key}]`);
+        if($elemDate.length) {
+            $elemDate.val(item.value);
+        }
     });
 
     $('.block-category__sidebar__filter_item input').on('change', function() {
         $('.block-category__sidebar__filter').trigger('submit');
+    });
+
+    $('.block-category__sidebar__filter_item.date').on('click', function() {
+        $(this).find('input').show().focus();
+        $(this).find('span').hide();
     });
 
     function updateURL(params) {
@@ -261,4 +270,17 @@ $(() => {
 
         return false;
     });
+  });
+
+  $(() => {
+    $('.interactive-map .circle').hover(function() {
+        const city = $(this).attr('class').split(' ')[1].split('-')[1];
+        $(`.pin-${city}, .text-${city}`).fadeIn();
+    }, function() {
+        const city = $(this).attr('class').split(' ')[1].split('-')[1];
+        
+        setTimeout(() => {
+            $(`.pin-${city}, .text-${city}`).fadeOut();
+        }, 300)
+    })
   });

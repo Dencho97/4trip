@@ -29861,9 +29861,19 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
     if ($elem.length && $elem.val() === item.value) {
       $elem.prop('checked', true);
     }
+
+    const $elemDate = jquery__WEBPACK_IMPORTED_MODULE_0___default()(`.block-category__sidebar__filter_item input[type=date][name=${item.key}]`);
+
+    if ($elemDate.length) {
+      $elemDate.val(item.value);
+    }
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.block-category__sidebar__filter_item input').on('change', function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('.block-category__sidebar__filter').trigger('submit');
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.block-category__sidebar__filter_item.date').on('click', function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).find('input').show().focus();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).find('span').hide();
   });
 
   function updateURL(params) {
@@ -29892,6 +29902,17 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
       }
     });
     return false;
+  });
+});
+jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.interactive-map .circle').hover(function () {
+    const city = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('class').split(' ')[1].split('-')[1];
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(`.pin-${city}, .text-${city}`).fadeIn();
+  }, function () {
+    const city = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('class').split(' ')[1].split('-')[1];
+    setTimeout(() => {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(`.pin-${city}, .text-${city}`).fadeOut();
+    }, 300);
   });
 });
 
