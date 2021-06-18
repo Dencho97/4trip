@@ -273,6 +273,11 @@ $(() => {
   });
 
   $(() => {
+    $('.interactive-map .circle').on('click', function() {
+        const city = $(this).attr('class').split(' ')[1].split('-')[1];
+        location.href = `${location.protocol}//${city}.${location.host}/`; 
+    });
+
     $('.interactive-map .circle').hover(function() {
         const city = $(this).attr('class').split(' ')[1].split('-')[1];
         $(`.pin-${city}, .text-${city}`).fadeIn();
@@ -283,4 +288,34 @@ $(() => {
             $(`.pin-${city}, .text-${city}`).fadeOut();
         }, 300)
     })
+  });
+
+  $(() => {
+    $('.block-top_select-way').on('change', function() {
+        location.href = $(this).val();
+    });
+  });
+
+  $(() => {
+    $('.block-top__categories__item').on('click', function() {
+        $('#popup-to-category_category').val($(this).data('category'))
+    });
+
+    $('.popup-to-category_select').on('change', function() {
+        const city = $(this).val();
+        const category = $('#popup-to-category_category').val();
+
+        $.get(`${location.href}?city=${city}&category=${category}`, (data, status) => {
+            if (status === 'success') {
+                const $data = $(data);
+
+                const urlCategory = $data.find('#popup-to-category_url').val();
+
+                if(urlCategory && urlCategory !== '') {
+                    location.href = `${location.protocol}//${city}.${location.host}/${urlCategory}`;s
+                }
+                
+            }
+        });
+    });
   });

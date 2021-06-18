@@ -29905,6 +29905,10 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
   });
 });
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.interactive-map .circle').on('click', function () {
+    const city = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('class').split(' ')[1].split('-')[1];
+    location.href = `${location.protocol}//${city}.${location.host}/`;
+  });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.interactive-map .circle').hover(function () {
     const city = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('class').split(' ')[1].split('-')[1];
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(`.pin-${city}, .text-${city}`).fadeIn();
@@ -29913,6 +29917,31 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
     setTimeout(() => {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(`.pin-${city}, .text-${city}`).fadeOut();
     }, 300);
+  });
+});
+jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.block-top_select-way').on('change', function () {
+    location.href = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+  });
+});
+jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.block-top__categories__item').on('click', function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#popup-to-category_category').val(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data('category'));
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.popup-to-category_select').on('change', function () {
+    const city = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+    const category = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#popup-to-category_category').val();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default.a.get(`${location.href}?city=${city}&category=${category}`, (data, status) => {
+      if (status === 'success') {
+        const $data = jquery__WEBPACK_IMPORTED_MODULE_0___default()(data);
+        const urlCategory = $data.find('#popup-to-category_url').val();
+
+        if (urlCategory && urlCategory !== '') {
+          location.href = `${location.protocol}//${city}.${location.host}/${urlCategory}`;
+          s;
+        }
+      }
+    });
   });
 });
 
