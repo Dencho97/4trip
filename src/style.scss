@@ -332,7 +332,10 @@ a {
 		.header_sticky {
 			display: flex;
 		}
-		
+		.header_menu li a, .header_menu li span {
+			padding: 14px 0;
+			font-size: 1rem;
+		}
 	}
 	&_burger {
 		display: none;
@@ -1137,24 +1140,60 @@ a {
 		@include bg();
 	}
 	&__content {
+		$content: &;
 		width: 100%;
 		padding: 36px 65px;
 		border-radius: 25px;
 		background: #FFF1CD;
+		&-wrap {
+			display: flex;
+			flex-wrap: wrap;
+		}
 		&_title {
 			font-size: 1.5625rem;
 			font-weight: bold;
 			line-height: 1.1;
-			margin: 0 0 30px 0;
+			margin: 0 0 15px 0;
+		}
+		&.booking {
+			#{$content} {
+				&-wrap {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					justify-content: flex-start;
+				}
+				&__item {
+					width: 100% !important;
+					&_text {
+						&.link {
+							color: white;
+							text-decoration: none;
+							background-color: #0394ED;
+							width: 100%;
+							border-radius: 85px;
+							padding: 17px 0;
+						}
+					}
+				}
+			}
 		}
 		&__item {
 			margin: 20px 0 0 0;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: flex-start;
+			width: 50%;
 			&_title {
 				font-size: 1rem;
 				line-height: 1;
 				color: #747474;
 				display: inline-block;
 				font-weight: normal;
+			}
+			&_icon {
+				height: 34px;
 			}
 			&_text {
 				font-size: 1rem;
@@ -1163,6 +1202,7 @@ a {
 				display: inline-block;
 				margin: 5px 0 0 0;
 				font-weight: bold;
+				text-align: center;
 				@include standartAnimate();
 				&.link {
 					color: #0394ED;
@@ -1190,9 +1230,8 @@ a {
 		border-radius: 25px 0px 0px 25px;
 		width: 40%;
 		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		padding: 0 65px;
+		flex-wrap: wrap;
+		padding: 80px 30px;
 		&_title {
 			font-size: 1.5625rem;
 			font-weight: bold;
@@ -1202,6 +1241,11 @@ a {
 		}
 		&__item {
 			margin: 20px 0 0 0;
+			width: 50%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: flex-start;
 			&_title {
 				font-size: 1rem;
 				line-height: 1;
@@ -1222,6 +1266,7 @@ a {
 				display: inline-block;
 				margin: 5px 0 0 0;
 				font-weight: bold;
+				text-align: center;
 				@include standartAnimate();
 				&.link {
 					color: #0394ED;
@@ -1231,15 +1276,22 @@ a {
 					}
 				}
 			}
+			&_icon {
+				height: 38px;
+			}
 		}
 		&_socials {
 			display: flex;
+			flex-wrap: wrap;
 			list-style: none;
 			justify-content: space-between;
-			align-items: center;
+			align-items: flex-start;
 			padding: 0;
-			margin: 40px 0 0 0;
+			margin: 20px 0 0 0;
+			width: 50%;
 			li {
+				width: 50%;
+				text-align: center;
 				&:hover {
 					path {
 						fill: $yellow;
@@ -1942,6 +1994,7 @@ a {
 		margin: 30px 0 0 0;
 		&__sidebar {
 			top: unset;
+			margin: 30px 0 0 0;
 			&_btn {
 				padding: 0;
 				font-size: 1.25rem;
@@ -2015,7 +2068,7 @@ a {
 		&__content {
 			width: 100%;
 			padding: 30px;
-			border-radius: 0;
+			border-radius: 25px;
 		}
 		&_map {
 			height: 200px;

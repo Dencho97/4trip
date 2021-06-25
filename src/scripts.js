@@ -130,6 +130,8 @@ $(() => {
     let city = $('.block-how-to-get__head_select').val();
     let type = $('.block-how-to-get__items__item').first().data('type');
 
+    console.log(city)
+
     $('.block-how-to-get__head_select').on('change', function() {
         city = $(this).val();
 
@@ -274,18 +276,18 @@ $(() => {
 
   $(() => {
     $('.interactive-map .circle').on('click', function() {
-        const city = $(this).attr('class').split(' ')[1].split('-')[1];
+        const city = $(this).attr('class').split(' ')[1].split('--')[1];
         location.href = `${location.protocol}//${city}.${location.host}/`; 
     });
 
     $('.interactive-map .circle').hover(function() {
-        const city = $(this).attr('class').split(' ')[1].split('-')[1];
-        $(`.pin-${city}, .text-${city}`).fadeIn();
+        const city = $(this).attr('class').split(' ')[1].split('--')[1];
+        $(`.pin--${city}, .text--${city}`).fadeIn();
     }, function() {
-        const city = $(this).attr('class').split(' ')[1].split('-')[1];
+        const city = $(this).attr('class').split(' ')[1].split('--')[1];
         
         setTimeout(() => {
-            $(`.pin-${city}, .text-${city}`).fadeOut();
+            $(`.pin--${city}, .text--${city}`).fadeOut();
         }, 300)
     })
   });

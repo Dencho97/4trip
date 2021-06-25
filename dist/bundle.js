@@ -29785,6 +29785,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
   let city = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.block-how-to-get__head_select').val();
   let type = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.block-how-to-get__items__item').first().data('type');
+  console.log(city);
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.block-how-to-get__head_select').on('change', function () {
     city = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(`.block-how-to-get_text`).hide();
@@ -29906,16 +29907,16 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
 });
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.interactive-map .circle').on('click', function () {
-    const city = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('class').split(' ')[1].split('-')[1];
+    const city = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('class').split(' ')[1].split('--')[1];
     location.href = `${location.protocol}//${city}.${location.host}/`;
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.interactive-map .circle').hover(function () {
-    const city = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('class').split(' ')[1].split('-')[1];
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(`.pin-${city}, .text-${city}`).fadeIn();
+    const city = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('class').split(' ')[1].split('--')[1];
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(`.pin--${city}, .text--${city}`).fadeIn();
   }, function () {
-    const city = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('class').split(' ')[1].split('-')[1];
+    const city = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('class').split(' ')[1].split('--')[1];
     setTimeout(() => {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(`.pin-${city}, .text-${city}`).fadeOut();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(`.pin--${city}, .text--${city}`).fadeOut();
     }, 300);
   });
 });
