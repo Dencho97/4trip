@@ -293,9 +293,10 @@ $(() => {
   });
 
   $(() => {
-    $('.block-top_select-way').on('change', function() {
+    $('.block-top_select-way, .header__mobile_city').on('change', function() {
         location.href = $(this).val();
     });
+
   });
 
   $(() => {
